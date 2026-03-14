@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=jah
 WorkingDirectory=/opt/knwn4-agent
-ExecStart=/usr/local/bin/doppler run --project knwn4-agent --config prd -- /opt/knwn4-agent/.venv/bin/python3 -m src.main
+ExecStart=/usr/bin/doppler run --project knwn4-agent --config prd -- /opt/knwn4-agent/.venv/bin/python3 -m src.main
 Restart=always
 RestartSec=10
 Environment=PYTHONUNBUFFERED=1
