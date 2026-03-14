@@ -19,9 +19,12 @@ def main() -> None:
     if missing:
         raise RuntimeError(f"Missing required env vars: {', '.join(missing)}")
 
+    from src.bot import build_app
+
     logger.info("KNWN4 Content Agent starting...")
-    # Bot setup will be added in Task 1.2
-    logger.info("All systems nominal. Bot ready.")
+    app = build_app()
+    logger.info("Bot built. Starting polling...")
+    app.run_polling(allowed_updates=["message", "callback_query"])
 
 
 if __name__ == "__main__":
