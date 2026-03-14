@@ -8,7 +8,13 @@ from telegram.ext import (
 )
 
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_USER_ID
-from src.handlers.commands import handle_start, handle_text, handle_status
+from src.handlers.commands import (
+    handle_start,
+    handle_text,
+    handle_status,
+    handle_reset,
+    handle_briefing,
+)
 from src.handlers.callbacks import handle_approval_callback
 
 
@@ -23,6 +29,8 @@ def build_app() -> Application:
     # Command handlers (whitelisted)
     app.add_handler(CommandHandler("start", handle_start, filters=WHITELIST_FILTER))
     app.add_handler(CommandHandler("status", handle_status, filters=WHITELIST_FILTER))
+    app.add_handler(CommandHandler("reset", handle_reset, filters=WHITELIST_FILTER))
+    app.add_handler(CommandHandler("briefing", handle_briefing, filters=WHITELIST_FILTER))
 
     # Callback query handler for inline buttons
     app.add_handler(CallbackQueryHandler(
