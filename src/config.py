@@ -22,9 +22,9 @@ HIGGSFIELD_EMAIL = os.environ.get("HIGGSFIELD_EMAIL", "")
 HIGGSFIELD_PASSWORD = os.environ.get("HIGGSFIELD_PASSWORD", "")
 
 # --- Model Tiers ---
-MODEL_ORCHESTRATOR = "claude-sonnet-4-5-20250514"
-MODEL_WORKER = "claude-haiku-4-5-20250514"
-MODEL_REASONING = "claude-opus-4-5-20250514"
+MODEL_ORCHESTRATOR = "claude-sonnet-4-5-latest"
+MODEL_WORKER = "claude-haiku-4-5-latest"
+MODEL_REASONING = "claude-opus-4-5-latest"
 
 # --- Limits ---
 MAX_TOKENS_DEFAULT = 4096
