@@ -19,11 +19,20 @@ def main() -> None:
     if missing:
         raise RuntimeError(f"Missing required env vars: {', '.join(missing)}")
 
+    from src.tools import register_all_tools
     from src.bot import build_app
+    from src.scheduler import setup_scheduled_jobs
+
+    # Register all tools before building bot
+    register_all_tools()
 
     logger.info("KNWN4 Content Agent starting...")
     app = build_app()
-    logger.info("Bot built. Starting polling...")
+
+    # Setup scheduled jobs (morning briefing, trending alerts, health checks)
+    setup_scheduled_jobs(app)
+
+    logger.info("Bot built with scheduled jobs. Starting polling...")
     app.run_polling(allowed_updates=["message", "callback_query"])
 
 
