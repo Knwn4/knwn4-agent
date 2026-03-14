@@ -5,7 +5,7 @@ set -euo pipefail
 echo "=== KNWN4 Content Agent — VPS Setup ==="
 
 # Install system deps
-apt-get update && apt-get install -y python3.11 python3.11-venv ffmpeg git curl
+apt-get update && apt-get install -y python3 python3-venv python3-pip ffmpeg git curl
 
 # Install Doppler CLI
 if ! command -v doppler &> /dev/null; then
@@ -36,7 +36,7 @@ fi
 
 # Setup Python venv
 if [ ! -d .venv ]; then
-    python3.11 -m venv .venv
+    python3 -m venv .venv
 fi
 .venv/bin/pip install --upgrade pip
 .venv/bin/pip install -e .
