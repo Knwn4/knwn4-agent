@@ -30,7 +30,7 @@ if [ -d /opt/knwn4-agent ]; then
     git pull
 else
     echo "Cloning project..."
-    git clone git@github.com:elitanenbaum/knwn4-agent.git /opt/knwn4-agent
+    git clone https://github.com/Knwn4/knwn4-agent.git /opt/knwn4-agent
     cd /opt/knwn4-agent
 fi
 
@@ -41,9 +41,13 @@ fi
 .venv/bin/pip install --upgrade pip
 .venv/bin/pip install -e .
 
-# Clone content project (for reference files: BRAND.md, voice-master.md, etc.)
-if [ ! -d /opt/knwn4-content ]; then
-    git clone git@github.com:elitanenbaum/CONTENTCREATORJAH.git /opt/knwn4-content
+# Content reference files (BRAND.md, voice, hooks, etc.)
+# Synced separately via: rsync -avz ~/CONTENTCREATORJAH/ jah@jah-prod-01:/opt/knwn4-content/
+mkdir -p /opt/knwn4-content
+if [ ! -f /opt/knwn4-content/BRAND.md ]; then
+    echo "WARNING: Content reference files not found at /opt/knwn4-content/"
+    echo "Run from your local machine:"
+    echo "  rsync -avz ~/CONTENTCREATORJAH/ jah@jah-prod-01:/opt/knwn4-content/"
 fi
 
 # Create required directories
